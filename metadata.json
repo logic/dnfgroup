@@ -1,0 +1,13 @@
+{
+  "name": "esm-dnfgroup",
+  "version": "0.1.0",
+  "author": "Ed Marshall",
+  "summary": "A package provider for DNF groups",
+  "license": "GPL-3.0-or-later",
+  "source": "https://github.com/logic/puppet-dnfgroup",
+  "project_page": "https://github.com/logic/puppet-dnfgroup",
+  "issues_url": "https://github.com/logic/puppet-dnfgroup/issues",
+  "dependencies": null,
+  "data_provider": null
+}
+
