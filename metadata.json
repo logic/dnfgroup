@@ -7,7 +7,7 @@
   "source": "https://github.com/logic/puppet-dnfgroup",
   "project_page": "https://github.com/logic/puppet-dnfgroup",
   "issues_url": "https://github.com/logic/puppet-dnfgroup/issues",
-  "dependencies": null,
+  "dependencies": [],
   "data_provider": null
 }
 
