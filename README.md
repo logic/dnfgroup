@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/logic/puppet-dnfgroup.svg?branch=master)](https://travis-ci.org/logic/puppet-dnfgroup)
+
 `dnfgroup` adds a package provider to puppet so you can manage DNF groups in a
 familar way:
 
