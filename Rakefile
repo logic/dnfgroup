@@ -32,3 +32,6 @@ task :test do
     Rake::Task[test].invoke
   end
 end
+
+desc 'Default rake target'
+task default: %i[test rubocop]
