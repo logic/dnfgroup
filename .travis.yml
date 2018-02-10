@@ -1,0 +1,21 @@
+language: ruby
+
+deploy:
+  provider: puppetforge
+  user: esm
+  password:
+    secure: >
+        fiCC+dI3gZpmELVHYUi5Gl2xlQXrd4Y9MDgHQoRqFAUTjRPH9fP17sOSqbrfqM1YVFF
+        N3oFBFcoPVfPcXul2lbQVUhwU+UXphy2popRJDKztTIB1jX3AJrjEAVfbu8HAxSjl17
+        kRS2aQET1nJ+B7ikrcUpboQMvIfApZL8egWC3biJFDeyj8xNHsNaiq6+k1E+XdUUBd4
+        4Kv2XpQphsa+ieWoE0ndubSIlAuMxdM2lOUPmBGOKyezZAd6Pm1cqd88L1fZ77Veprl
+        VO7FWoyIyyRGOucLyzGpDgEuszc9wI4nlbREjGFQWhsL4065fHDWGHCuMUZBIGV0zlA
+        G0gQeIxKzVQmOJBTAR/ZUgY299jxvk4dRaMOFFpuRmL1pVPkwLYJp/3fXENE/J/RnhJ
+        ieDS7g8RJgSAuhjfdz1jH4vTa+g1uPkbRRJAhRwN7bHkEnPLykDAWYEWKqLHYA9j/ya
+        zbF1qtWVmBzhKm4RGuOoKnETgq/YTATlAH/V4qpnOkXn0fHNaMHzIX52/uu51+LmKAE
+        mhN9U7i8egSZS11JBG/wQnVUYDkjeg/cAP9FNeVrU0DhqepkEIka0BNPIxC7fNPdgID
+        hZtA3Iu115Mcb1taho8fmkUOFpsQm8SjwXFn0XvRllvFYFjL/008qkw93xGIVwazlVg
+        G5LxIj8ZyJU4M=
+  on:
+    tags: true
+    all_branches: true

@@ -1,0 +1,4 @@
+pkg
+spec/fixtures/manifests/*
+spec/fixtures/modules/*
+Gemfile.lock

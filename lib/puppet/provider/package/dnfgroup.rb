@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # dnfgroup - A puppet package provider for DNF groups
 # Copyright (C) 2018 Ed Marshall
 #
@@ -16,34 +18,35 @@
 
 require 'puppet/provider/package'
 
-Puppet::Type.type(:package).provide(:dnfgroup, :parent => Puppet::Provider::Package) do
+Puppet::Type.type(:package).provide( # rubocop:disable Metrics/BlockLength
+  :dnfgroup,
+  parent: Puppet::Provider::Package
+) do
+
   has_feature :installable
   has_feature :uninstallable
 
-  commands :dnf => '/usr/bin/dnf'
+  commands dnf: '/usr/bin/dnf'
 
   def self.error_level
     '1'
   end
 
-  def self.instances
+  def self.instances # rubocop:disable Metrics/MethodLength
     packages = []
-    execpipe("#{command(:dnf)} group list --installed -d 9 -e #{self.error_level}") do |process|
-      # "   Long Name Of Group (group-id) [optional-language]"
-      regex = %r{^\s+(.+) \(([^)]+)\)\s*(\[[^\]]+\])?\s*$}
-
+    cmd = "#{command(:dnf)} group list --installed -d 9 -e #{error_level}"
+    execpipe(cmd) do |process|
+      regex = /^\s+(.+) \(([^)]+)\)\s*(\[[^\]]+\])?\s*$/
       process.each_line do |line|
-        line.chomp!
-        next unless match = regex.match(line)
-        packages << new({
-          :name => match[2],
-          :alias => match[1],
-          :ensure => :installed,
-          :provider => self.name,
-        })
+        next unless (match = regex.match(line))
+        packages << new(
+          name: match[2],
+          alias: match[1],
+          ensure: :installed,
+          provider: name
+        )
       end
     end
-
     packages
   end
 
@@ -58,10 +61,12 @@ Puppet::Type.type(:package).provide(:dnfgroup, :parent => Puppet::Provider::Pack
   end
 
   def install
-    dnf('group', 'install', '-d', '0', '-e', self.class.error_level, '-y', @resource[:name])
+    dnf('group', 'install', '-d', '0', '-e', self.class.error_level, '-y',
+        @resource[:name])
   end
 
   def uninstall
-    dnf('group', 'remove', '-d', '0', '-e', self.class.error_level, '-y', @resource[:name])
+    dnf('group', 'remove', '-d', '0', '-e', self.class.error_level, '-y',
+        @resource[:name])
   end
 end
