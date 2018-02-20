@@ -34,10 +34,16 @@ Puppet::Type.type(:package).provide( # rubocop:disable Metrics/BlockLength
 
   def self.instances # rubocop:disable Metrics/MethodLength
     packages = []
-    cmd = "#{command(:dnf)} group list --installed -d 9 -e #{error_level}"
+    cmd = "#{command(:dnf)} group list --hidden -d 9 -e #{error_level}"
     execpipe(cmd) do |process|
       regex = /^\s+(.+) \(([^)]+)\)\s*(\[[^\]]+\])?\s*$/
+      in_installed = false
       process.each_line do |line|
+        unless line.start_with? '   '
+          in_installed = line.start_with? 'Installed'
+          next
+        end
+        next unless in_installed
         next unless (match = regex.match(line))
         packages << new(
           name: match[2],
